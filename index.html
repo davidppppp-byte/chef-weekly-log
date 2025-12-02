@@ -88,33 +88,30 @@
             };
 
             const [weekDate, setWeekDate] = useState(getWeekDates());
-            const [chefName, setChefName] = useState('Chef Andy');
+            const [chefName, setChefName] = useState('利偉銨');
             const [theme, setTheme] = useState('冬季菜單開發 / 發酵元素應用');
             
-            // 1. 待辦事項
+            // 1. 待辦事項 (預設一條空白)
             const [todos, setTodos] = useState([
-                { id: 1, text: '聯繫海鮮供應商確認干貝價格', done: true },
-                { id: 2, text: '整理上季研發食譜歸檔', done: false },
-                { id: 3, text: '週三下午 2:00 試菜會議', done: false },
+                { id: 1, text: '', done: false },
             ]);
 
-            // 2. 研發內容
+            // 2. 研發內容 (預設一條空白)
             const [rdItems, setRdItems] = useState([
                 { 
                 id: 1, 
-                dishName: '松露野菇燉飯 V3', 
+                dishName: '', 
                 source: '研發部發想', 
-                objective: '測試不同品牌義大利米的吸水性與口感', 
-                feedback: '口感比 V2 好，但松露油味道在收汁後變淡。',
-                nextStep: 'V4 嘗試起鍋前才淋油，調整帕瑪森起司比例。',
-                status: '調整中' 
+                objective: '', 
+                feedback: '', 
+                nextStep: '', 
+                status: '開發中' 
                 }
             ]);
 
-            // 3. 學習與考察
+            // 3. 學習與考察 (預設一條空白)
             const [learnings, setLearnings] = useState([
-                { id: 1, category: '餡料部', content: '測試新的芋泥餡料甜度，建議降低 10%。' },
-                { id: 2, category: '烘烤部', content: '觀察烤箱溫控穩定度，紀錄不同層架的受熱差異。' }
+                { id: 1, category: '餡料部', content: '' },
             ]);
 
             const addTodo = () => {
@@ -323,7 +320,7 @@
                                                 {/* 第一行：菜名與狀態 */}
                                                 <div className="flex flex-col md:flex-row justify-between items-start mb-4 gap-4">
                                                     <div className="flex-1 w-full">
-                                                        <label className="text-xs text-gray-400 font-bold uppercase tracking-wider block mb-1">Dish Name</label>
+                                                        <label className="text-xs text-gray-400 font-bold uppercase tracking-wider block mb-1">輸入產品名稱</label>
                                                         <input 
                                                             value={item.dishName}
                                                             onChange={(e) => updateRdItem(item.id, 'dishName', e.target.value)}
