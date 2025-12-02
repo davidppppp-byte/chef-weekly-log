@@ -171,11 +171,12 @@
                         <header className="bg-slate-800 text-white p-6 print:bg-slate-800 print:p-4">
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                                 <div className="flex items-center gap-4">
-                                    {/* Logo 圖片，請務必上傳 logo.png 到 GitHub */}
+                                    {/* Logo 圖片：已移除 hidden 屬性，手機也會顯示 */}
+                                    {/* 請務必確認 GitHub 上有上傳名為 logo.png 的檔案 */}
                                     <img 
                                         src="logo.png" 
                                         alt="Logo" 
-                                        className="h-16 w-auto object-contain bg-white rounded-lg p-1 hidden md:block print:block"
+                                        className="h-16 w-auto object-contain bg-white rounded-lg p-1 block print:block"
                                         onError={(e) => {e.target.style.display = 'none'}} 
                                     />
                                     <div>
@@ -353,7 +354,6 @@
                                                         <input 
                                                             value={item.dishName}
                                                             onChange={(e) => updateRdItem(item.id, 'dishName', e.target.value)}
-                                                            placeholder="輸入產品名稱"
                                                             className="w-full text-lg font-bold text-gray-800 border-b border-gray-200 focus:border-gray-500 focus:outline-none pb-1 bg-transparent"
                                                         />
                                                     </div>
