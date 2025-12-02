@@ -35,6 +35,7 @@
             .bg-slate-800 { background-color: #1e293b !important; color: white !important; }
             .bg-orange-50 { background-color: #fff7ed !important; }
             .bg-blue-50 { background-color: #eff6ff !important; }
+            .bg-gray-50 { background-color: #f9fafb !important; }
         }
     </style>
 </head>
@@ -66,6 +67,9 @@
         const CheckSquare = ({ size = 24, className = "" }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
         );
+        const ClipboardList = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg>
+        );
 
         // --- Main Application ---
         function ChefWeeklyLog() {
@@ -90,6 +94,7 @@
             const [weekDate, setWeekDate] = useState(getWeekDates());
             const [chefName, setChefName] = useState('利偉銨');
             const [theme, setTheme] = useState('冬季菜單開發 / 發酵元素應用');
+            const [remarks, setRemarks] = useState(''); // 新增備註欄位狀態
             
             // 1. 待辦事項 (預設一條空白)
             const [todos, setTodos] = useState([
@@ -165,12 +170,21 @@
                         {/* Header Section */}
                         <header className="bg-slate-800 text-white p-6 print:bg-slate-800 print:p-4">
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                                <div>
-                                    <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-3">
-                                        <ChefHat className="h-8 w-8 text-orange-400" />
-                                        研發主廚工作週誌
-                                    </h1>
-                                    <p className="text-slate-300 mt-1 text-sm md:text-base">R&D Chef Weekly Report</p>
+                                <div className="flex items-center gap-4">
+                                    {/* Logo 圖片，請務必上傳 logo.png 到 GitHub */}
+                                    <img 
+                                        src="logo.png" 
+                                        alt="Logo" 
+                                        className="h-16 w-auto object-contain bg-white rounded-lg p-1 hidden md:block print:block"
+                                        onError={(e) => {e.target.style.display = 'none'}} 
+                                    />
+                                    <div>
+                                        <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-3">
+                                            <ChefHat className="h-8 w-8 text-orange-400" />
+                                            研發主廚工作週誌
+                                        </h1>
+                                        <p className="text-slate-300 mt-1 text-sm md:text-base">R&D Chef Weekly Report</p>
+                                    </div>
                                 </div>
                                 <div className="text-right no-print w-full md:w-auto">
                                     <button 
@@ -297,6 +311,21 @@
                                     >
                                         <Plus size={16} /> 新增學習紀錄
                                     </button>
+                                </section>
+
+                                {/* 4. 備註欄位 (New) */}
+                                <section className="bg-gray-50 border border-gray-200 rounded-xl p-5 shadow-sm print:break-inside-avoid print:border-gray-300">
+                                    <h2 className="text-xl font-bold text-gray-700 mb-4 flex items-center gap-2 pb-2 border-b border-gray-200 print:text-black print:border-gray-300">
+                                        <ClipboardList size={20} />
+                                        備註 (Remarks)
+                                    </h2>
+                                    <textarea
+                                        value={remarks}
+                                        onChange={(e) => setRemarks(e.target.value)}
+                                        className="w-full text-sm bg-white rounded border border-gray-200 p-3 focus:border-gray-400 focus:outline-none resize-none"
+                                        rows={4}
+                                        placeholder="其他需要補充的事項、臨時交辦或下週預告..."
+                                    />
                                 </section>
                             </div>
 
